@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Learning History</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        /* History Cards */
+        .history-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .history-card {
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-card:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
+        .lesson-info h3 {
+            margin-bottom: 5px;
+        }
+
+        .time {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            background: #00d4ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">E-Learning</div>
+
+    <div class="nav-links">
+        <a href="/user-dashboard/">Dashboard</a>
+        <a href="/learn/">Subjects</a>
+        <a href="/bookmarks/">Bookmarks</a>
+        <a href="/search/">Search</a>
+        <a href="/chat/">Chatbot</a>
+        <a href="/user-logout/">Logout</a>
+    </div>
+</div>
+
+<!-- History Section -->
+<div class="hero">
+
+    <h2>Your Learning History</h2>
+
+    <div class="history-container">
+        {% for h in history %}
+        <div class="history-card">
+            <div class="lesson-info">
+                <h3>{{ h.lesson.title }}</h3>
+                <p>{{ h.lesson.subject.name }}</p>
+                <p class="time">Viewed at: {{ h.viewed_at }}</p>
+            </div>
+
+            <a href="/lesson/{{ h.lesson.id }}/" class="btn">Open Again</a>
+        </div>
+        {% empty %}
+        <p style="color:white; text-align:center;">No history available yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

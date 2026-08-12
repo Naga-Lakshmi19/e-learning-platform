@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registered Users</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        /* Table Card */
+        .table-box {
+            background: rgba(0,0,0,0.75);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .table-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #00d4ff;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.1);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .delete-btn {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Admin Panel</div>
+
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/subjects/">Subjects</a>
+        <a href="/lessons/">Lessons</a>
+        <a href="/admin-messages/">Messages</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Users Table -->
+<div class="hero">
+    <div class="table-box">
+
+        <h2>Registered Users</h2>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+
+            {% for u in users %}
+            <tr>
+                <td>{{ u.name }}</td>
+                <td>{{ u.email }}</td>
+                <td>
+                    <a href="/delete-user/{{ u.id }}/"
+                       class="delete-btn"
+                       onclick="return confirm('Delete this user?')">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

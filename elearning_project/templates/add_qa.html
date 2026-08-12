@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Chatbot Knowledge</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form Card */
+        .form-box {
+            background: rgba(0,0,0,0.75);
+            padding: 40px;
+            border-radius: 10px;
+            width: 450px;
+            color: white;
+            text-align: center;
+        }
+
+        .form-box h2 {
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #00d4ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #009ec3;
+        }
+
+        .back {
+            display: block;
+            margin-top: 15px;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Admin Panel</div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/lessons/">Lessons</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Add Q&A Form -->
+<div class="hero">
+    <div class="form-box">
+
+        <h2>Add Chatbot Knowledge</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="question" placeholder="Enter Question" required>
+
+            <textarea name="answer" rows="5" placeholder="Enter Answer" required></textarea>
+
+            <button type="submit">Save Knowledge</button>
+        </form>
+
+        <a href="/dashboard/" class="back">← Back to Dashboard</a>
+
+    </div>
+</div>
+
+</body>
+</html>

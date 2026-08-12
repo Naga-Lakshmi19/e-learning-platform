@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Learning Platform</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            color: #00d4ff;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            background: rgba(0,0,0,0.65);
+            padding: 50px;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            background: #00d4ff;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>E-Learning</h2>
+    <div>
+        <a href="/user-login/">Login</a>
+        <a href="/register/">Register</a>
+        <a href="/admin-login/">Admin</a>
+        <a href="/contact/">Contact</a>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+    <div class="overlay">
+        <h1>Learn Without Limits</h1>
+        <p>Structured Courses • Track Progress • Smart Chatbot Assistance</p>
+
+        <a href="/register/" class="btn">Get Started</a>
+        <a href="/user-login/" class="btn">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

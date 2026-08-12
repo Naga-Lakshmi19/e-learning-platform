@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Read Lesson</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        /* Lesson Card */
+        .lesson-box {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0,0,0,0.75);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .lesson-box h2 {
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .content {
+            line-height: 1.7;
+            margin-bottom: 25px;
+            white-space: pre-line;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            background: #00d4ff;
+            color: black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+
+        .back {
+            color: #00d4ff;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">E-Learning</div>
+
+    <div class="nav-links">
+        <a href="/user-dashboard/">Dashboard</a>
+        <a href="/learn/">Subjects</a>
+        <a href="/bookmarks/">Bookmarks</a>
+        <a href="/history/">History</a>
+        <a href="/chat/">Chatbot</a>
+        <a href="/user-logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Lesson Content -->
+<div class="hero">
+    <div class="lesson-box">
+
+        <h2>{{ lesson.title }}</h2>
+
+        <div class="content">
+            {{ lesson.content }}
+        </div>
+
+        {% if lesson.image %}
+<img src="{{ lesson.image.url }}" width="400">
+{% endif %}
+
+        <!-- Complete Lesson -->
+        <form method="POST" action="/complete/{{ lesson.id }}/" style="display:inline;">
+            {% csrf_token %}
+            <button class="btn">Mark as Completed</button>
+        </form>
+
+        <!-- Bookmark -->
+        <form method="POST" action="/bookmark/{{ lesson.id }}/" style="display:inline;">
+            {% csrf_token %}
+            <button class="btn">Bookmark</button>
+        </form>
+
+        <br><br>
+        <a href="/learn/{{ lesson.subject.id }}/" class="back">← Back to Lessons</a>
+
+    </div>
+</div>
+
+</body>
+</html>

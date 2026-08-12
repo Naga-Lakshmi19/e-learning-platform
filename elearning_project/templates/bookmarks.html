@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookmarks</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        /* Cards */
+        .bookmark-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .bookmark-card {
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .bookmark-card:hover {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #00d4ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">E-Learning</div>
+
+    <div class="nav-links">
+        <a href="/user-dashboard/">Dashboard</a>
+        <a href="/learn/">Subjects</a>
+        <a href="/history/">History</a>
+        <a href="/chat/">Chatbot</a>
+        <a href="/user-logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Bookmarks Section -->
+<div class="hero">
+
+    <h2>Your Bookmarked Lessons</h2>
+
+    <div class="bookmark-container">
+        {% for b in bookmarks %}
+        <div class="bookmark-card">
+            <h3>{{ b.lesson.title }}</h3>
+            <p>{{ b.lesson.subject.name }}</p>
+
+            <a href="/lesson/{{ b.lesson.id }}/" class="btn">Open Lesson</a>
+        </div>
+        {% empty %}
+        <p style="color:white; text-align:center;">No bookmarks yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

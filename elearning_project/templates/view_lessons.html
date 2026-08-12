@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Lessons</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        /* Table Card */
+        .table-box {
+            background: rgba(0,0,0,0.75);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .table-box h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #00d4ff;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.1);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00d4ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Admin Panel</div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/add-lesson/">Add Lesson</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Lessons Table -->
+<div class="hero">
+    <div class="table-box">
+
+        <h2>All Lessons</h2>
+
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Lesson Title</th>
+                <th>Order</th>
+                <th>Action</th>
+            </tr>
+
+            {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.subject.name }}</td>
+                <td>{{ lesson.title }}</td>
+                <td>{{ lesson.order }}</td>
+                <td>
+    <a href="/delete-lesson/{{ lesson.id }}/"
+       onclick="return confirm('Delete this lesson?')"
+       style="color:red;">Delete</a>
+</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/add-lesson/" class="btn">Add Another Lesson</a>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ask From PDF</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Chat Box */
+        .chat-box {
+            width: 500px;
+            height: 500px;
+            background: rgba(0,0,0,0.75);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .user-msg {
+            background: #00d4ff;
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .bot-msg {
+            background: #444;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Input Area */
+        .input-box {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        .input-box input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+        }
+
+        .input-box button {
+            padding: 10px 20px;
+            border: none;
+            background: #00d4ff;
+            cursor: pointer;
+        }
+
+        .input-box button:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">E-Learning</div>
+
+    <div class="nav-links">
+        <a href="/user-dashboard/">Dashboard</a>
+        <a href="/learn/">Subjects</a>
+        <a href="/chat/">Curriculum Chat</a>
+        <a href="/user-logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Chat Section -->
+<div class="hero">
+
+    <div class="chat-box">
+
+        <div class="messages">
+
+            {% if request.POST.question %}
+            <div class="user-msg">
+                {{ request.POST.question }}
+            </div>
+            {% endif %}
+
+            {% if answer %}
+            <div class="bot-msg">
+                {{ answer }}
+            </div>
+            {% endif %}
+
+        </div>
+
+        <form method="POST" class="input-box">
+            {% csrf_token %}
+            <input type="text" name="question" placeholder="Ask question from PDF..." required>
+            <button type="submit">Ask</button>
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

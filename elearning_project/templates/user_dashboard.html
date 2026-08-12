@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Welcome Box */
+        .welcome-box {
+            background: rgba(0,0,0,0.65);
+            padding: 50px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .welcome-box h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-box p {
+            font-size: 18px;
+            color: #ddd;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">E-Learning</div>
+
+    <div class="nav-links">
+        <a href="/learn/">Start Learning</a>
+        <a href="/search/">Search</a>
+        <a href="/bookmarks/">Bookmarks</a>
+        <a href="/history/">History</a>
+        <a href="/chat/">Chatbot</a>
+        <a href="/upload-pdf/">PDF Q&A</a>
+        <a href="/contact/">Contact</a>
+        <a href="/user-logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Welcome Section -->
+<div class="hero">
+    <div class="welcome-box">
+        <h1>Welcome {{ request.session.user_name }}</h1>
+        <p>Start learning, track progress, and explore your courses.</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Subjects</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00d4ff;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Background */
+        .hero {
+            min-height: 90vh;
+            background: url("https://images.unsplash.com/photo-1523240795612-9a054b0db644") no-repeat center center/cover;
+            padding: 40px;
+        }
+
+        /* Table Box */
+        .table-box {
+            background: rgba(0,0,0,0.75);
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .table-box h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #00d4ff;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255,255,255,0.1);
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #00d4ff;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #009ec3;
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Admin Panel</div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/add-subject/">Add Subject</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- Subjects Table -->
+<div class="hero">
+    <div class="table-box">
+
+        <h2>All Subjects</h2>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Subject Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.id }}</td>
+                <td>{{ subject.name }}</td>
+                <td>{{ subject.description }}</td>
+                <td>
+    <a href="/delete-subject/{{ subject.id }}/"
+       onclick="return confirm('Delete this subject?')"
+       style="color:red;">Delete</a>
+</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <a href="/add-subject/" class="btn">Add Another Subject</a>
+
+    </div>
+</div>
+
+</body>
+</html>
